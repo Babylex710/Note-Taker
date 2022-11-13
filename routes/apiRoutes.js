@@ -4,10 +4,10 @@ const fs = require('fs');
 const path = require('path');
 const notes = require('../db/db.json');
 
-// GET request
+// GET request to recieve notes
 router.get('/notes', (req, res) => {
 
-    res.status(200).json(notes);
+    res.json(notes);
 });
 
 // POST request
