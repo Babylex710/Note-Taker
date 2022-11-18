@@ -4,13 +4,20 @@ const fs = require('fs');
 const path = require('path');
 const notes = require('../db/db.json');
 const { readFromFile, readAndAppend } = require('../helpers/fsUtils');
+const uuid = require('../helpers/uuid');
 
 
 //Get Request
-router.get('/notes', (req, res) => {
-    console.info(`${req.method} request received for notes`);
-    readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
-});
+router.get("/notes", (req, res) => {
+    readFromFile('./db/db.json')
+      .then((data) => {
+        res.json(JSON.parse(data));
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json({ error: "Unable to read notes." });
+      });
+  });
 
 //Post Request
 router.post('/notes', (req, res) => {
@@ -22,6 +29,7 @@ router.post('/notes', (req, res) => {
         const newNote = {
             title,
             text,
+            id: uuid()
         };
 
         readAndAppend(newNote, './db/db.json');
