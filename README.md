@@ -14,6 +14,7 @@
   
     The following image shows the web application's appearance:
 ![alt screenshot](./images/noteTakerScreenShot.png)
+![alt screenshot](./images/notetakersc2.png)
 
   ## Contributing
   N/A
